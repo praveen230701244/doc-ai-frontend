@@ -7,27 +7,27 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   const handleUpload = async () => {
-    if (!file) return alert("Select a file");
+  if (!file) return alert("Select a file");
 
-    setLoading(true);
+  setLoading(true);
 
-    const formData = new FormData();
-    formData.append("file", file);
+  const formData = new FormData();
+  formData.append("file", file);
 
-    try {
-      const res = await fetch("http://localhost:5000/upload", {
-        method: "POST",
-        body: formData,
-      });
+  try {
+    const res = await fetch("https://doc-ai-backend-6m6a.onrender.com/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-      const data = await res.json();
-      setPoints(data.points);
-    } catch (err) {
-      alert("Error processing file");
-    }
+    const data = await res.json();
+    setPoints(data.points);
+  } catch (err) {
+    alert("Error processing file");
+  }
 
-    setLoading(false);
-  };
+  setLoading(false);
+};
 
   return (
     <div style={styles.app}>
